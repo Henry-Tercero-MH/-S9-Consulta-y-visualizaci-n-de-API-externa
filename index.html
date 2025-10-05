@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Master - Generador de Preguntas</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1 data-text="Trivia Master">Trivia Master</h1>
+            <p>Pon a prueba tus conocimientos con preguntas de trivia holográficas</p>
+        </header>
+
+        <div class="search-section">
+            <div class="search-container">
+                <button id="generateBtn" class="search-btn">🧠 Generar Trivia</button>
+                <button id="surpriseMeBtn" class="load-all-btn">🎲 Pregunta Aleatoria</button>
+                <button id="languageToggleBtn" class="language-btn">🇪🇸 Español</button>
+            </div>
+
+            <div class="filters">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="">Cualquier categoría</option>
+                    <option value="9">Conocimiento General</option>
+                    <option value="10">Libros</option>
+                    <option value="11">Películas</option>
+                    <option value="12">Música</option>
+                    <option value="13">Teatro y Musicales</option>
+                    <option value="14">Televisión</option>
+                    <option value="15">Videojuegos</option>
+                    <option value="16">Juegos de Mesa</option>
+                    <option value="17">Ciencia y Naturaleza</option>
+                    <option value="18">Informática</option>
+                    <option value="19">Matemáticas</option>
+                    <option value="20">Mitología</option>
+                    <option value="21">Deportes</option>
+                    <option value="22">Geografía</option>
+                    <option value="23">Historia</option>
+                    <option value="24">Política</option>
+                    <option value="25">Arte</option>
+                    <option value="26">Celebridades</option>
+                    <option value="27">Animales</option>
+                    <option value="28">Vehículos</option>
+                </select>
+
+                <select id="difficultyFilter" class="filter-select">
+                    <option value="">Cualquier dificultad</option>
+                    <option value="easy">Fácil</option>
+                    <option value="medium">Medio</option>
+                    <option value="hard">Difícil</option>
+                </select>
+
+                <select id="typeFilter" class="filter-select">
+                    <option value="">Cualquier tipo</option>
+                    <option value="multiple">Opción múltiple</option>
+                    <option value="boolean">Verdadero/Falso</option>
+                </select>
+
+                <select id="amountFilter" class="filter-select">
+                    <option value="1">1 pregunta</option>
+                    <option value="5">5 preguntas</option>
+                    <option value="10" selected>10 preguntas</option>
+                    <option value="15">15 preguntas</option>
+                    <option value="20">20 preguntas</option>
+                </select>
+            </div>
+
+            <div class="activity-counter">
+                <span id="activityCounter">🎯 Preguntas respondidas: 0</span>
+                <span id="scoreCounter">📊 Puntuación: 0/0</span>
+            </div>
+        </div>
+
+        <!-- Loading spinner -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Cargando preguntas de trivia...</p>
+        </div>
+
+        <!-- Error message -->
+        <div id="errorMessage" class="error-message hidden">
+            <div class="error-content">
+                <h3>¡Oops! Algo salió mal</h3>
+                <p id="errorText"></p>
+                <button id="retryBtn" class="retry-btn">Intentar de nuevo</button>
+            </div>
+        </div>
+
+        <!-- Results section -->
+        <div class="results-section">
+            <div id="resultsInfo" class="results-info hidden">
+                <span id="resultsCount"></span>
+            </div>
+
+            <!-- Trivia grid -->
+            <div id="charactersGrid" class="characters-grid">
+                <!-- Las preguntas se cargarán aquí dinámicamente -->
+            </div>
+
+            <!-- Quiz navigation -->
+            <div id="quizNavigation" class="quiz-navigation hidden">
+                <button id="prevQuestionBtn" class="nav-btn">← Anterior</button>
+                <span id="questionProgress" class="question-progress">1 / 10</span>
+                <button id="nextQuestionBtn" class="nav-btn">Siguiente →</button>
+                <button id="finishQuizBtn" class="finish-btn hidden">🏁 Finalizar Quiz</button>
+            </div>
+
+            <!-- Quick actions -->
+            <div id="quickActions" class="quick-actions hidden">
+                <button id="saveResultsBtn" class="action-btn">💾 Guardar Resultados</button>
+                <button id="shareResultsBtn" class="action-btn">📤 Compartir Puntuación</button>
+                <button id="newQuizBtn" class="action-btn">🔄 Nuevo Quiz</button>
+            </div>
+        </div>
+
+        <!-- Question details modal -->
+        <div id="characterModal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modalBody">
+                    <!-- Detalles de la pregunta se cargarán aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Datos proporcionados por <a href="https://opentdb.com/" target="_blank">Open Trivia Database</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
